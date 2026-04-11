@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'PokemonHollowNormal';
+  src: url('fonts/PokemonHollowNormal-pyPZ.woff2') format('woff2'),
+       url('fonts/PokemonSolidNormal-xyWR.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'PokemonSolidNormal';
+  src: url('fonts/PokemonSolidNormal-xyWR.woff2') format('woff2');
+  
+}
+@font-face {
+  font-family: 'GillSans';
+  src: url('fonts/Gill\ Sans\ Ultra\ Bold.woff2') format('woff2');
+}
+
+
+body {
+  margin: 0;
+  background: 
+    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+    url("img/Pixel\ Cloud.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial;
+}
+
+
+.usuario {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #3C427C;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 0px;
+    color: white;
+        text-shadow: 
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px  1px 0 black,
+         1px  1px 0 black;
+}
+
+
+.usuario p {
+    margin: 0px;
+    font-size: 20px;
+}
+
+#nombre {
+    font-family: 'GillSans';
+    font-size: 30px;
+    color: #EE2F52;
+    font-weight: bold;
+}
+
+
+#id {
+    color: white;
+    font-size: 30px;
+}
+
+.centro {
+    text-align: center;
+}
+
+
+.logo {
+    width: 60%;
+    max-width: 900px;
+}
+
+
+.menu-btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-shadow: 
+      -1px -1px 0 black,
+       1px -1px 0 black,
+      -1px  1px 0 black,
+       1px  1px 0 black;
+    width: 280px;
+    height: 70px;
+    background: #3C427C;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* efecto hover */
+.menu-btn:hover {
+    transform: scale(1.08);
+    background: #EE2F52;
+    color: white;
+    cursor: pointer;
+}
+.dialogo {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+
+
+    transform: translateX(-50%);
+
+    width: 80%;
+    max-width: 700px;
+    z-index: 9999;
+}
+/*
+.dialogo {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 700px;
+    z-index: 9999;
+}
+*/
+
+.dialogo-caja {
+    background: white;
+    border: 4px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: Arial;
+    box-shadow: 0 0 0 4px white, 0 0 0 8px black;
+}
+
+.oculto {
+    display: none;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/*
+.titulo {
+  font-family: 'PokemonHollowNormal', Arial;
+  font-size: 100px;
+  text-align: center;
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 2 5px;
+}
+.atm {
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  color: white;
+  text-align: center;
+}
+
+#pantalla {
+  background: black;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: green;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+*/
+
