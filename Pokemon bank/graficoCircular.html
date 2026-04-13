@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokémon Bank - Gráfico</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Análisis de Transacciones</h2>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <canvas id="graficoTransacciones" width="400" height="200"></canvas>
+      </div>
+    </div>
+<div class="text-center">
+  <a href="index.html" class="btn btn-primary">Regresar al menú principal</a>
+</div>
+  </div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    var ctx = document.getElementById('graficoTransacciones').getContext('2d');
+    var grafico = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Depósitos', 'Retiros', 'Pagos de Servicios', 'Consultas'],
+        datasets: [{
+          data: [40, 30, 20, 10], // datos ficticios
+          backgroundColor: ['#28a745', '#dc3545', '#007bff', '#6c757d']
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Distribución de Transacciones'
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

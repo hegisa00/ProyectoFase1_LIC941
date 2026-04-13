@@ -1,3 +1,22 @@
+.login-box {
+  background-color: #fff;
+  max-width: 300px;
+}
+
+.logo {
+  width: 100px;
+}
+
+form input {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+form input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
 @font-face {
   font-family: 'PokemonHollowNormal';
   src: url('fonts/PokemonHollowNormal-pyPZ.woff2') format('woff2'),
@@ -18,10 +37,7 @@ body {
   margin: 0;
   background: 
     linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
-    url("img/Pixel\ Cloud.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    url("/img/Pixel\ Cloud.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -184,4 +200,3 @@ button {
   cursor: pointer;
 }
 */
-
