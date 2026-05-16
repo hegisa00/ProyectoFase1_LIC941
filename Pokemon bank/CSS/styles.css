@@ -118,29 +118,25 @@ body {
     color: white;
     cursor: pointer;
 }
+
 .dialogo {
     position: fixed;
-    top: 30%;
+
+    top: 50%;
     left: 50%;
 
-
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
 
     width: 80%;
-    max-width: 700px;
+    max-width: 900px;
+
+    max-height: 90vh;
+
     z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
 }
-/*
-.dialogo {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    max-width: 700px;
-    z-index: 9999;
-}
-*/
 
 .dialogo-caja {
     background: white;
@@ -149,6 +145,12 @@ body {
     padding: 20px;
     font-family: Arial;
     box-shadow: 0 0 0 4px white, 0 0 0 8px black;
+    overflow: hidden;
+    max-height: 90vh;
+}
+#dialogo-contenido {
+    overflow-y: auto;
+    max-height: 70vh;
 }
 
 .oculto {

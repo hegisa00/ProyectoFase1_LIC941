@@ -41,22 +41,70 @@
 
     </div>
   
-  <div id="dialogo" class="dialogo oculto">
+ <div id="dialogo" class="dialogo oculto">
+
     <div class="dialogo-caja">
 
-        <h3 id="dialogo-titulo"></h3>
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:15px;
+            gap:10px;
+            flex-wrap:wrap;
+        ">
+
+            <h3 id="dialogo-titulo" style="margin:0;"></h3>
+
+            <div style="display:flex; gap:10px;">
+
+                <button 
+                    id="btn-descargar-pdf"
+                    onclick="descargarPDF()"
+                    style="
+                        display:none;
+                        background:#28a745;
+                        color:white;
+                        border:none;
+                        padding:10px 15px;
+                        border-radius:8px;
+                        cursor:pointer;
+                        font-weight:bold;
+                    "
+                >
+                    Descargar PDF
+                </button>
+
+                <button 
+                    onclick="cerrarDialogo()"
+                    style="
+                        background:#EE2F52;
+                        color:white;
+                        border:none;
+                        padding:10px 15px;
+                        border-radius:8px;
+                        cursor:pointer;
+                        font-weight:bold;
+                    "
+                >
+                    Cerrar
+                </button>
+
+            </div>
+
+        </div>
 
         <div id="dialogo-contenido"></div>
 
-        <button onclick="cerrarDialogo()">Cerrar</button>
     </div>
-  </div>
+
+</div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="JS/script.js"></script>
-
+  
   <script>
     const nombreGuardado = localStorage.getItem("nombreUsuario");
 
@@ -66,6 +114,5 @@
       window.location.href = "login.html";
     }
   </script>
-
 </body>
 </html>
