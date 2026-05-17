@@ -10,13 +10,10 @@
 
   <div class="login-box p-4 rounded shadow text-center">
     <img src="img/logo.png" alt="Logo" class="logo mb-3">
-    <h2 class="mb-4">Iniciar Sesión</h2>
+    <h2 class="mb-4">Ingresar PIN</h2>
     <form id="loginForm">
       <div class="mb-3">
-        <input type="text" class="form-control" id="usuario" placeholder="Usuario" required>
-      </div>
-      <div class="mb-3">
-        <input type="password" class="form-control" id="clave" placeholder="Contraseña" required>
+        <input type="password" class="form-control" id="pin" placeholder="PIN de 4 dígitos" maxlength="4" required>
       </div>
       <button type="submit" class="menu-btn w-100">Entrar</button>
     </form>
@@ -24,20 +21,37 @@
   </div>
 
   <script>
+    // 🔹 Paso 1: Definir usuarios con PIN y cuenta
+    const usuarios = [
+      { nombre: "Admin", pin: "0000", cta: "0000001" },
+      { nombre: "Ash", pin: "1234", cta: "0000002" },
+      { nombre: "Misty", pin: "4321", cta: "0000003" }
+    ];
+
+    // Guardar en localStorage si aún no existe
+    if (!localStorage.getItem("usuarios")) {
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    }
+
+    // 🔹 Paso 2: Validar PIN
     document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault(); // Evita recargar la página
+      e.preventDefault();
 
-      const usuario = document.getElementById("usuario").value;
-      const clave = document.getElementById("clave").value;
+      const pinIngresado = document.getElementById("pin").value;
+      const listaUsuarios = JSON.parse(localStorage.getItem("usuarios"));
 
-      if (usuario === "admin" && clave === "0000") {
-        // Guardar el nombre en localStorage
-        localStorage.setItem("nombreUsuario", usuario);
+      // Buscar coincidencia
+      const usuarioEncontrado = listaUsuarios.find(u => u.pin === pinIngresado);
+
+      if (usuarioEncontrado) {
+        // Guardar datos en localStorage para usarlos en index.html
+        localStorage.setItem("nombreUsuario", usuarioEncontrado.nombre);
+        localStorage.setItem("cuentaUsuario", usuarioEncontrado.cta);
 
         // Redirigir a index.html
         window.location.href = "index.html";
       } else {
-        document.getElementById("mensaje").textContent = "Usuario o contraseña incorrectos";
+        document.getElementById("mensaje").textContent = "PIN incorrecto. Intente nuevamente.";
       }
     });
   </script>

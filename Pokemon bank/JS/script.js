@@ -122,47 +122,71 @@ window.abrir = function(tipo) {
     }
 
     // 🔹 Nuevo caso: gráfico
-    if (tipo === "Grafico") {
-        titulo.textContent = "Movimientos Bancarios";
-        contenido.innerHTML = '<canvas id="graficoMovimientos"></canvas>';
+if (tipo === "grafico") {
+    titulo.textContent = "Movimientos Bancarios";
+    contenido.innerHTML = '<canvas id="graficoCombinado"></canvas>';
 
-        const ctx = document.getElementById('graficoMovimientos').getContext('2d');
+    const ctx = document.getElementById('graficoCombinado').getContext('2d');
 
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-                datasets: [
-                    {
-                        label: 'Depósitos',
-                        data: [500, 700, 400, 900, 650],
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: true,
-                        tension: 0.3
-                    },
-                    {
-                        label: 'Retiros',
-                        data: [300, 450, 600, 200, 500],
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        fill: true,
-                        tension: 0.3
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' },
-                    title: { display: true, text: 'Historial de Depósitos y Retiros' }
-                },
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
+    // Obtener historial de transacciones
+    const historial = JSON.parse(localStorage.getItem("transacciones")) || [];
+
+    if (historial.length === 0) {
+        contenido.innerHTML = "<p>No hay movimientos registrados aún.</p>";
+        return;
     }
+
+    // Etiquetas: fecha y hora
+    const labels = historial.map(m => `${m.fecha} ${m.hora}`);
+
+    // Datos: depósitos, retiros y saldo acumulado
+    const depositos = historial.map(m => m.tipo.includes("Depósito") ? parseFloat(m.monto) : 0);
+    const retiros = historial.map(m => m.tipo.includes("Retiro") ? parseFloat(m.monto) : 0);
+    const saldo = historial.map(m => parseFloat(m.saldoResultante));
+
+    new Chart(ctx, {
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    type: 'bar',
+                    label: 'Depósitos',
+                    data: depositos,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                },
+                {
+                    type: 'bar',
+                    label: 'Retiros',
+                    data: retiros,
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                },
+                {
+                    type: 'line',
+                    label: 'Saldo acumulado',
+                    data: saldo,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: false,
+                    tension: 0.3,
+                    yAxisID: 'y'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Depósitos, Retiros y Evolución del Saldo' }
+            },
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+}
+
+
+    
 };
 
 window.cerrarDialogo = function() {
