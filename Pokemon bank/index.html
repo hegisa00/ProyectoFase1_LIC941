@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Cajero Pokémon</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="CSS/styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -11,10 +11,10 @@
   <!-- Bloque de bienvenida -->
   <div class="usuario text-center py-3">
     <p class="m-0 fs-4">
-        ¡Bienvenido! <span id="nombre"></span>
+        ¡Bienvenido! <span id="nombre">Usuario</span>
     </p>
     <p class="m-0">
-        N° de Cuenta: <span id="cuenta"></span>
+        N° de Cuenta: <span id="cuenta">000000000</span>
     </p>
   </div>
  
@@ -40,9 +40,49 @@
   <!-- Diálogo dinámico -->
   <div id="dialogo" class="dialogo oculto">
     <div class="dialogo-caja">
-        <h3 id="dialogo-titulo"></h3>
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:15px;
+            gap:10px;
+            flex-wrap:wrap;
+        ">
+            <h3 id="dialogo-titulo" style="margin:0;"></h3>
+            <div style="display:flex; gap:10px;">
+                <button 
+                    id="btn-descargar-pdf"
+                    onclick="descargarPDF()"
+                    style="
+                        display:none;
+                        background:#28a745;
+                        color:white;
+                        border:none;
+                        padding:10px 15px;
+                        border-radius:8px;
+                        cursor:pointer;
+                        font-weight:bold;
+                    "
+                >
+                    Descargar PDF
+                </button>
+                <button 
+                    onclick="cerrarDialogo()"
+                    style="
+                        background:#EE2F52;
+                        color:white;
+                        border:none;
+                        padding:10px 15px;
+                        border-radius:8px;
+                        cursor:pointer;
+                        font-weight:bold;
+                    "
+                >
+                    Cerrar
+                </button>
+            </div>
+        </div>
         <div id="dialogo-contenido"></div>
-        <button onclick="cerrarDialogo()">Cerrar</button>
     </div>
   </div>
 
@@ -50,31 +90,28 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="JS/script.js"></script>
 
-  <!-- Tu script principal -->
-  <script src="js/script.js"></script>
+  <!-- Script para mostrar nombre, cuenta y botón gráfico dinámico -->
+  <script>
+    const nombreGuardado = localStorage.getItem("nombreUsuario");
+    const cuentaGuardada = localStorage.getItem("cuentaUsuario");
 
-  <!-- Script para mostrar nombre y cuenta -->
-<script>
-  const nombreGuardado = localStorage.getItem("nombreUsuario");
-  const cuentaGuardada = localStorage.getItem("cuentaUsuario");
+    if (nombreGuardado && cuentaGuardada) {
+      document.getElementById("nombre").textContent = nombreGuardado;
+      document.getElementById("cuenta").textContent = cuentaGuardada;
 
-  if (nombreGuardado && cuentaGuardada) {
-    document.getElementById("nombre").textContent = nombreGuardado;
-    document.getElementById("cuenta").textContent = cuentaGuardada;
-
-    // 🔹 Mostrar botón gráfico solo si es Admin
-    if (nombreGuardado === "Admin") {
-      const contenedor = document.createElement("div");
-      contenedor.className = "d-flex flex-column text-center mt-3";
-      contenedor.innerHTML = `<button class="menu-btn" onclick="abrir('grafico')">Gráfico</button>`;
-      document.body.appendChild(contenedor);
+      // Mostrar botón gráfico solo si es Admin
+      if (nombreGuardado === "Admin") {
+        const contenedor = document.createElement("div");
+        contenedor.className = "d-flex flex-column text-center mt-3";
+        contenedor.innerHTML = `<button class="menu-btn" onclick="abrir('grafico')">Gráfico</button>`;
+        document.body.appendChild(contenedor);
+      }
+    } else {
+      window.location.href = "login.html";
     }
-  } else {
-    window.location.href = "login.html";
-  }
-</script>
-
-
+  </script>
 </body>
 </html>
